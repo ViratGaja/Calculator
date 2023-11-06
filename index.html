@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Project Cost Calculator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.calculator {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+div {
+    margin: 10px 0;
+}
+
+input, span {
+    padding: 5px;
+    width: 100px;
+}
+
+input[type="number"] {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: right;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="calculator p-4">
+            <h1 class="text-center">Project Cost Calculator</h1>
+            <div class="form-group">
+                <label for="hours">Hours:</label>
+                <input type="number" class="form-control" id="hours" step="0.1" placeholder="0">
+            </div>
+            <div class="form-group">
+                <label for="rate">Hourly Rate ($):</label>
+                <input type="number" class="form-control" id="rate" step="0.01" placeholder="0">
+            </div>
+            <div class="form-group">
+                <label for="result">Total Cost ($):</label>
+                <span class="form-control" id="result">0</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get input elements
+const hoursInput = document.getElementById("hours");
+const rateInput = document.getElementById("rate");
+const resultSpan = document.getElementById("result");
+
+// Add event listeners to input elements
+hoursInput.addEventListener("input", calculateTotalCost);
+rateInput.addEventListener("input", calculateTotalCost);
+
+// Calculate and update the total cost
+function calculateTotalCost() {
+    const hours = parseFloat(hoursInput.value);
+    const rate = parseFloat(rateInput.value);
+
+    if (!isNaN(hours) && !isNaN(rate)) {
+        const totalCost = hours * rate;
+        resultSpan.textContent = totalCost.toFixed(2);
+    } else {
+        resultSpan.textContent = "0";
+    }
+}
+
+// Initialize the calculator with default values
+calculateTotalCost();
+
+    </script>
+
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
